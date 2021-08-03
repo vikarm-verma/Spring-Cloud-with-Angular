@@ -1,0 +1,23 @@
+<p>user-list works!</p>
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let department of departments">
+            <td>{{ department.departmentId }}</td>
+            <td>{{ department.departmentName}}</td>
+            <td>{{ department.departmentAddress }}</td>
+            <td>{{department.departmentCode}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

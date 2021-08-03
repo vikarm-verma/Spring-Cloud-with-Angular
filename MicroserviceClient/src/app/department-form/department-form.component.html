@@ -1,0 +1,56 @@
+<p>department-form works!</p>
+<p>user-form works!</p>
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #departmentForm="ngForm">
+        <div class="form-group">
+       
+            <label for="departmentId">DepartmentId</label>
+          <input type="text" [(ngModel)]="department.departmentId" 
+            class="form-control" 
+            id="departmentId" 
+            name="departmentId" 
+            placeholder="Enter departmentId"
+            required #departmentId="ngModel">
+        </div>
+        <div [hidden]="!departmentId.pristine" class="alert alert-danger">departmentId is required</div>
+
+        <div class="form-group">
+       
+          <label for="departmentName">departmentName</label>
+        <input type="text" [(ngModel)]="department.departmentName" 
+          class="form-control" 
+          id="departmentName" 
+          name="departmentName" 
+          placeholder="Enter departmentName"
+          required #departmentName="ngModel">
+      </div>
+      <div [hidden]="!departmentName.pristine" class="alert alert-danger">departmentName is required</div>
+
+        <div class="form-group">
+          <label for="departmentAddress">DepartmentAddress</label>
+          <input type="text" [(ngModel)]="department.departmentAddress" 
+            class="form-control" 
+            id="departmentAddress" 
+            name="departmentAddress" 
+            placeholder="Enter your departmentAddress"
+            required #departmentAddress="ngModel">
+          <div [hidden]="!departmentAddress.pristine" class="alert alert-danger">departmentAddress is required</div>
+        </div>
+
+        <div class="form-group">
+          <label for="departmentCode">DepartmentCode</label>
+          <input type="text" [(ngModel)]="department.departmentCode" 
+            class="form-control" 
+            id="departmentCode" 
+            name="departmentCode" 
+            placeholder="Enter your departmentCode"
+            required #departmentCode="ngModel">
+          <div [hidden]="!departmentCode.pristine" class="alert alert-danger">departmentCode is required</div>
+        </div>
+        <button type="submit" [disabled]="!departmentForm.form.valid" 
+          class="btn btn-info">Submit</button>|
+         
+      </form>
+    </div>
+  </div>

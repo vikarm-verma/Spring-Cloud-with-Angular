@@ -1,0 +1,13 @@
+server:
+  port: 9296
+
+#providing application name and git repo uri for getting the configuration
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/VikramVerma12/config-server
+          clone-on-start: true

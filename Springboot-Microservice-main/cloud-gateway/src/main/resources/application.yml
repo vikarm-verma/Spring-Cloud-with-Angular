@@ -1,0 +1,49 @@
+server:
+  port: 9191
+
+#Giving application named as API-GATEWAY and setting the routes with id ,uri and predicates carrying paths and 
+#putting filters too which has name circuit breaker and setting fallbackuri if user service gets failed
+#doing the same with department service
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: USER-SERVICE
+                fallbackuri: forward:/userServiceFallBack
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/departments/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: DEPARTMENT-SERVICE
+                fallbackuri: forward:/departmentServiceFallBack
+
+#setting timeout of waiting for a service and then send message
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+
+# can visualize how our services are working on this stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
